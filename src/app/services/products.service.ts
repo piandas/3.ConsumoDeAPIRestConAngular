@@ -4,7 +4,7 @@ import { retry } from 'rxjs/operators';
 
 import { Product, CreateProductDTO, UpdateProductDTO} from './../models/product.model';
 
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
