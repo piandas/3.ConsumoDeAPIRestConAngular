@@ -9,7 +9,7 @@ import { Product, CreateProductDTO, UpdateProductDTO} from './../models/product.
 })
 export class ProductsService {
 
-  private apiUrl = 'https://api.escuelajas.co/api/v1/products';
+  private apiUrl = '/api/v1/products';
 
   constructor(
     private http: HttpClient
