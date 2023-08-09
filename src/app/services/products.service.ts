@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 
 import { Product, CreateProductDTO, UpdateProductDTO} from './../models/product.model';
 
@@ -8,7 +9,7 @@ import { Product, CreateProductDTO, UpdateProductDTO} from './../models/product.
 })
 export class ProductsService {
 
-  private apiUrl = 'https://api.escuelajs.co/api/v1/products';
+  private apiUrl = 'https://api.escuelajas.co/api/v1/products';
 
   constructor(
     private http: HttpClient
@@ -20,7 +21,10 @@ export class ProductsService {
       params = params.set('limit', limit)
       params = params.set('offset', limit)
     }
-    return this.http.get<Product[]>(this.apiUrl, { params});
+    return this.http.get<Product[]>(this.apiUrl, { params})
+    .pipe(
+      retry(3)
+    );
   }
 
   getProduct(id: string) {
