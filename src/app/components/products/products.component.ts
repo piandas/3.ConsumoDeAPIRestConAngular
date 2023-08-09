@@ -57,15 +57,16 @@ export class ProductsComponent implements OnInit {
 
   onShowDetail(id: string) {
     this.statusDetail = 'loading';
+    this.toggleProductDetail();
     this.productsService.getProduct(id)
-    .subscribe(data => {
-      this.toggleProductDetail();
-      this.productChosen = data;
-      this.statusDetail = 'success';
-    }, error => {
-      console.error(error)
-      this.statusDetail = 'error';
-    })
+      .subscribe( data => {
+          this.productChosen = data;
+          this.statusDetail = 'success';
+        }, errorMsg => {
+          window.alert(errorMsg); // Acceder al mensaje de error
+          this.statusDetail = 'error';
+        }
+      );
   }
 
   createNewProduct() {
